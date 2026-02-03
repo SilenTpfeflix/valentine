@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Willst du mein Valentine sein?</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #ffdde7;
+      font-family: system-ui, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 2rem;
+      color: #d1005d;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      z-index: 1;
+    }
+
+    button {
+      padding: 0.8rem 1.6rem;
+      font-size: 1rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, font-size 0.2s ease, padding 0.2s ease;
+    }
+
+    #yesBtn {
+      background: #ff4b8b;
+      color: white;
+    }
+
+    #noBtn {
+      background: #ffffff;
+      color: #ff4b8b;
+      border: 2px solid #ff4b8b;
+    }
+
+    /* Wenn der Ja-Button „Full“ ist, soll er alles ausfüllen */
+    .yes-fullscreen {
+      position: fixed;
+      inset: 0;
+      width: 100vw !important;
+      height: 100vh !important;
+      border-radius: 0 !important;
+      font-size: 2rem !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      background: #ff4b8b !important;
+    }
+  </style>
+</head>
+<body>
+  <h1>Willst du mein Valentine sein? 💘</h1>
+
+  <div class="buttons">
+    <button id="yesBtn">Ja</button>
+    <button id="noBtn">Nein</button>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn  = document.getElementById("noBtn");
+
+    // Texte, die nacheinander auf dem Nein-Button erscheinen sollen
+    const noTexts = [
+      "Nein",
+      "Bist du sicher?",
+      "Ganz sicher?",
+      "Wirklich sicher?",
+      "Letzte Chance!",
+      "Überleg's dir nochmal 🥺"
+    ];
+
+    let noClickCount = 0;
+    let yesScale = 1; // Anfangsgröße
+
+    noBtn.addEventListener("click", () => {
+      // Text auf dem Nein-Button ändern
+      noClickCount++;
+      const textIndex = Math.min(noClickCount, noTexts.length - 1);
+      noBtn.textContent = noTexts[textIndex];
+
+      // Ja-Button jedes Mal größer machen
+      yesScale += 0.3;
+      yesBtn.style.transform = `scale(${yesScale})`;
+
+      // Ab einem bestimmten Punkt: Vollbild-Ja-Button
+      if (yesScale >= 3) {
+        yesBtn.classList.add("yes-fullscreen");
+        yesBtn.textContent = "OK, du kannst nur noch Ja sagen 😏💖";
+        // Optional: Nein-Button ausblenden
+        noBtn.style.display = "none";
+      }
+    });
+
+    yesBtn.addEventListener("click", () => {
+      // Wenn sie/er auf Ja klickt
+      document.body.innerHTML = `
+        <div style="
+          display:flex;
+          flex-direction:column;
+          align-items:center;
+          justify-content:center;
+          height:100vh;
+          background:#ffdde7;
+          font-family:system-ui,sans-serif;
+          text-align:center;
+        ">
+          <h1 style="color:#d1005d;">Yaaay! 🎉💘</h1>
+          <p style="font-size:1.2rem;">Ich wusste, dass du Ja sagst! 🥰</p>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>
