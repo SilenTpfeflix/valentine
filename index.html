@@ -80,7 +80,7 @@
     // Texte, die nacheinander auf dem Nein-Button erscheinen sollen
     const noTexts = [
       "Nein",
-      "Bist du sicher?",
+      "Sicher?",
       "Ganz sicher?",
       "Wirklich sicher?",
       "Letzte Chance!",
@@ -97,13 +97,13 @@
       noBtn.textContent = noTexts[textIndex];
 
       // Ja-Button jedes Mal größer machen
-      yesScale += 0.3;
+      yesScale += 0.8;
       yesBtn.style.transform = `scale(${yesScale})`;
 
       // Ab einem bestimmten Punkt: Vollbild-Ja-Button
-      if (yesScale >= 3) {
+      if (yesScale >= 2,2) {
         yesBtn.classList.add("yes-fullscreen");
-        yesBtn.textContent = "OK, du kannst nur noch Ja sagen 😏💖";
+        yesBtn.textContent = "Du meintest sicher ja 💖";
         // Optional: Nein-Button ausblenden
         noBtn.style.display = "none";
       }
