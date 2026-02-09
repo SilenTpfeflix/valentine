@@ -97,11 +97,11 @@
       noBtn.textContent = noTexts[textIndex];
 
       // Ja-Button jedes Mal größer machen
-      yesScale += 1;
+      yesScale += 0.8;
       yesBtn.style.transform = `scale(${yesScale})`;
 
       // Ab einem bestimmten Punkt: Vollbild-Ja-Button
-      if (yesScale >= 5.5) {
+      if (yesScale >= 5) {
         yesBtn.classList.add("yes-fullscreen");
         yesBtn.textContent = "Du meintest sicher ja 💖";
         // Optional: Nein-Button ausblenden
